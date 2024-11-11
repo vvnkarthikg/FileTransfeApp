@@ -21,7 +21,6 @@ public class App{
     private JPanel mainPanel;
     private JTextField selectedFilePathField;
     private JTextField receiverIdField;
-    private static JTextField savePathField;
     private JFileChooser fileChooser;
     private JPanel sidePanel;
     private JPanel sendFilePanel;
@@ -269,7 +268,6 @@ sendFileButton.addActionListener(new ActionListener() {
                         directoryChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
                         if (JFileChooser.APPROVE_OPTION == directoryChooser.showOpenDialog(sendFilePanel)) {  
                             saveDirectory = directoryChooser.getSelectedFile().getAbsolutePath();
-                            savePathField.setText(saveDirectory);
                             fileTransfer.sendReceiverAck(true);
                             if (fileTransfer.receiveFile(receivedFileName, saveDirectory)) {
                                 int confirmation = JOptionPane.showConfirmDialog(receiveFilePanel, "File received successfully.\nDo you want to open the file?", null, JOptionPane.YES_NO_OPTION);
