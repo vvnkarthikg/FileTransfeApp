@@ -215,7 +215,7 @@ sendFileButton.addActionListener(new ActionListener() {
 
         receiveFilePanel = new JPanel();
         receiveFilePanel.setLayout(null);
-        receiveFilePanel.setBackground(new Color(254,237,250));
+        receiveFilePanel.setBackground(new Color(240,250,255));
         mainPanel.add(receiveFilePanel,"receiveFilePanel");
 
         JLabel title2 = new JLabel("File Transfer App");
@@ -244,16 +244,16 @@ sendFileButton.addActionListener(new ActionListener() {
 
 
 
-        JLabel savePathLabel = new JLabel("Path to Save:");
-        savePathLabel.setFont(new Font("Bahnschrift", Font.BOLD, 18));
-        savePathLabel.setBounds(140, 250, 144, 65);
-        receiveFilePanel.add(savePathLabel);
+        // JLabel savePathLabel = new JLabel("Path to Save:");
+        // savePathLabel.setFont(new Font("Bahnschrift", Font.BOLD, 18));
+        // savePathLabel.setBounds(140, 250, 144, 65);
+        // receiveFilePanel.add(savePathLabel);
 
-        savePathField = new JTextField();
-        receiverIdField.setToolTipText("Receiver ID or IP");
-        receiverIdField.setColumns(10);
-        savePathField.setBounds(260, 260, 350, 50);
-        receiveFilePanel.add(savePathField);
+        // savePathField = new JTextField();
+        // receiverIdField.setToolTipText("Receiver ID or IP");
+        // receiverIdField.setColumns(10);
+        // savePathField.setBounds(260, 260, 350, 50);
+        // receiveFilePanel.add(savePathField);
 
         JButton receiveFileButton = new JButton("Receive File");
         receiveFileButton.addActionListener(new ActionListener() {
