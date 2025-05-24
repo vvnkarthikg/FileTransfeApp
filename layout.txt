@@ -1,0 +1,89 @@
+App
+└── frame (JFrame)
+    ├── sidePanel (JPanel)           - Left sidebar
+    │   ├── sendButton (JButton)     - Button to switch to Send File panel
+    │   └── receiveButton (JButton)  - Button to switch to Receive File panel
+    │
+    └── mainPanel (JPanel)           - Main content area with CardLayout
+        ├── sendFilePanel (JPanel)   - Panel to handle file sending
+        │   ├── heading (JLabel)     - Title "Send File"
+        │   ├── sendFileStep1 (JLabel) - Instructions step 1
+        │   ├── sendFileStep2 (JLabel) - Instructions step 2
+        │   ├── selectedFilePathField (JTextField) - Displays selected file path
+        │   ├── uploadButton (JButton) - Button to upload file
+        │   ├── receiverIdLabel (JLabel) - Label for receiver IP
+        │   ├── receiverIdField (JTextField) - Input for receiver IP
+        │   └── sendFileButton (JButton) - Button to send the file
+        │
+        └── receiveFilePanel (JPanel) - Panel to handle file receiving
+            ├── title2 (JLabel)     - Title "File Transfer App"
+            ├── receiveText (JLabel) - Title "Receive File"
+            ├── receiveFileStep1 (JLabel) - Instructions step 1
+            ├── receiveFileStep2 (JLabel) - Instructions step 2
+            └── receiveFileButton (JButton) - Button to initiate file reception
+
+
+
+
+
+
+
+FILE SENDING PROCESS
+
+    FILE SENDING SEQUENCE 
+    sendFilename(receiverId, filename) → waitForReceiverAck() → sendFile(filename, receiverId)
+
+
+1. [User Action] Click "Send File" Button
+   └→ Triggers sendFileButton Action Listener
+
+2. Retrieve Receiver IP and File Path
+   └→ receiverId = receiverIdField.getText()
+   └→ filename = selectedFilePathField.getText()
+
+3. Send Filename to Receiver
+   └→ fileTransfer.sendFilename(receiverId, filename)
+     ├── If Success: Continue to Step 4
+     └── If Failure: Show Error, Exit Process
+
+4. Wait for Receiver Acknowledgment
+   └→ fileTransfer.waitForReceiverAck()
+     ├── If Acknowledged: Continue to Step 5
+     └── If No Acknowledgment: Show Error, Exit Process
+
+5. Send File to Receiver
+   └→ fileTransfer.sendFile(filename, receiverId)
+     ├── If Success: Show Success Message
+     └── If Failure: Show Error Message
+
+
+FILE RECIEVING PROCESS
+
+    FILE RECIEVING SEQUENCE
+    receiveFilename() → sendReceiverAck(true) → receiveFile(receivedFileName, saveDirectory)
+
+
+1. [User Action] Click "Receive File" Button
+   └→ Triggers receiveFileButton Action Listener
+
+2. Receive Filename from Sender
+   └→ fileTransfer.receiveFilename()
+     ├── If Filename Received: Continue to Step 3
+     └── If Failure: Show Error, Exit Process
+
+3. Prompt User to Choose Save Directory
+   └→ saveDirectory = Show JFileChooser Dialog
+     ├── If Directory Selected: Continue to Step 4
+     └── If Not Selected: Exit Process
+
+4. Send Acknowledgment to Sender
+   └→ fileTransfer.sendReceiverAck(true)
+     ├── If Success: Continue to Step 5
+     └── If Failure: Show Error, Exit Process
+
+5. Receive File from Sender
+   └→ fileTransfer.receiveFile(receivedFileName, saveDirectory)
+     ├── If Success: Show Success Message, Option to Open File
+     └── If Failure: Show Error Message
+
+
